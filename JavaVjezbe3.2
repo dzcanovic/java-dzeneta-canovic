@@ -1,0 +1,80 @@
+package zadaci;
+
+public class Zaposleni  {
+	private String ime;
+	private String prezime;
+	private int godineStaza;
+	private float plata;
+	
+	public Zaposleni (String ime, String prezime, int godineStaza, float plata) {
+		this.ime = ime;
+		this.prezime = prezime;
+		this.godineStaza = godineStaza;
+		this.plata = plata;
+		
+	}
+	
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+
+	public short getGodineStaza() {
+		return godineStaza;
+	}
+
+	public void setGodineStaza(short godineStaza) {
+		this.godineStaza = godineStaza;
+	}
+
+	public float getPlata() {
+		return plata;
+	}
+
+	public void setPlata(float plata) {
+		this.plata = plata;
+		
+	}
+		
+		public void stampa() {
+			System.out.println("Ime zaposlenog:" +this.ime);
+			System.out.println("Prezime:" +this.prezime);
+			System.out.println("Godine staza:" + this.godineStaza);
+			System.out.println("Plata:" +this.plata);
+		
+	}
+		
+		public void azuziranjePlate() {
+			if(this.godineStaza > 10) {
+				if(this.plata < 800) {
+					this.plata = this.plata + this.plata*0.06f;
+				}
+			}
+		}
+		
+		
+		
+
+	public static void main(String[] args) {
+
+		Zaposleni zaposleni1 = new Zaposleni("Ivan", "Ivanovic", 10, 1500);
+		Zaposleni zaposleni2 = new Zaposleni("Jovan", "Ivanovic", 12, 750);
+		Zaposleni zaposleni3 = new Zaposleni("Milan", "Ivanovic", 5, 800);
+		
+		zaposleni1.stampa();
+		
+
+	}
+
+}
