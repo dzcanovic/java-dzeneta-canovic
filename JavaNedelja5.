@@ -1,0 +1,15 @@
+package novi;
+
+import java.util.ArrayList;
+
+public class TestnaKlasa {
+
+	public static void main(String[] args) {
+    ArrayList<Destinacija> destinacije = new ArrayList <Destinacija>();
+		
+		Destinacija d1 = new Destinacija("barcelona","Spanija",10,2500,20000000);
+		Destinacija d2 = new Destinacija("Pariz","Francuska",9,1800,200010000);
+
+	}
+
+}
