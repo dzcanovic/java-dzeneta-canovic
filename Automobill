@@ -1,0 +1,59 @@
+package klase;
+
+public class Automobill extends Vozilo {
+
+	private int brojVrata;
+	private int brojOsoba;
+	
+	
+	public int getBrojVrata() {
+		return brojVrata;
+	}
+	public void setBrojVrata(int brojVrata) {
+		if(brojVrata >=3) 
+		  this.brojVrata = brojVrata;
+	}
+	public int getBrojOsoba() {
+		return brojOsoba;
+	}
+	public void setBrojOsoba(int brojOsoba) {
+		if(brojOsoba>=2)
+		   this.brojOsoba = brojOsoba;
+	}
+	
+	
+
+	public Automobill() {
+		this(null, null, 0, 1945, 3, 2);
+	}
+	
+	
+	
+	public Automobill(String marka, String model, int kubikaza, int godiste, int brojVrata, int brojOsoba) {
+		super(marka, model, kubikaza, godiste);
+		this.setBrojVrata(brojVrata);
+		this.setBrojOsoba(brojOsoba);
+	}
+	
+	@Override
+	public String toString() {
+		return "Automobill [brojVrata=" + brojVrata + ", brojOsoba=" + brojOsoba + ", marka()=" + getMarka()
+				+ ", model()=" + getModel() + ", kubikaza()=" + getKubikaza() + ", godiste()=" + getGodiste()
+				+ "]";
+	}
+	
+	@Override
+	public float dajCijenuRegistracije() {
+		float cijena;
+		
+		
+		cijena =((float)this.getKubikaza()/10+(2026 - this.getGodiste()) * 10)
+				* Vozilo.getOsnovicaZaRegistraciju();
+		
+		return cijena;
+	}
+	
+	
+	
+	
+}
