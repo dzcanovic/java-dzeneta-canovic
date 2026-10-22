@@ -1,0 +1,224 @@
+//Proizvodi
+package klase;
+
+public class Proizvodi {
+	
+	private String opisProizvoda;
+	private int barKod;
+	private String zemljaPorijekla;
+	private int godinaProizvodnje;
+	protected double uvoznaCijena;
+	
+	public Proizvodi(String opisProizvoda, int barKod, String zemljaPorijekla, int godinaProizvodnje,
+			int uvoznaCijena) {
+		super();
+		this.opisProizvoda = opisProizvoda;
+		this.barKod = barKod;
+		this.zemljaPorijekla = zemljaPorijekla;
+		this.godinaProizvodnje = godinaProizvodnje;
+		this.uvoznaCijena = uvoznaCijena;
+	}
+
+	public String getOpisProizvoda() {
+		return opisProizvoda;
+	}
+
+	public void setOpisProizvoda(String opisProizvoda) {
+		this.opisProizvoda = opisProizvoda;
+	}
+
+	public int getBarKod() {
+		return barKod;
+	}
+
+	public void setBarKod(int barKod) {
+		this.barKod = barKod;
+	}
+
+	public String getZemljaPorijekla() {
+		return zemljaPorijekla;
+	}
+
+	public void setZemljaPorijekla(String zemljaPorijekla) {
+		this.zemljaPorijekla = zemljaPorijekla;
+	}
+
+	public int getGodinaProizvodnje() {
+		return godinaProizvodnje;
+	}
+
+	public void setGodinaProizvodnje(int godinaProizvodnje) {
+		this.godinaProizvodnje = godinaProizvodnje;
+	}
+
+	public double getUvoznaCijena() {
+		return uvoznaCijena;
+	}
+
+	public void setUvoznaCijena(double uvoznaCijena) {
+		this.uvoznaCijena = uvoznaCijena;
+	}
+	
+	public void izracuanjCijenu() {
+		
+	}
+
+	@Override
+	public String toString() {
+		return "Proizvodi [opisProizvoda=" + opisProizvoda + ", barKod=" + barKod + ", zemljaPorijekla="
+				+ zemljaPorijekla + ", godinaProizvodnje=" + godinaProizvodnje + ", uvoznaCijena=" + uvoznaCijena + "]";
+	}
+
+	
+	//public Proizvodi() {
+	//	this.opisProizvoda = "default vrijednost";
+	
+}
+//Garderoba
+package klase;
+
+public class Garderoba extends Proizvodi {
+
+	private String materijalProizvodnje;
+	private String sezona;
+	public String getMaterijalProizvodnje() {
+		return materijalProizvodnje;
+	}
+	public void setMaterijalProizvodnje(String materijalProizvodnje) {
+		this.materijalProizvodnje = materijalProizvodnje;
+	}
+	public String getSezona() {
+		return sezona;
+	}
+	public void setSezona(String sezona) {
+		this.sezona = sezona;
+	}
+	
+	public Garderoba(String opisProizvoda, int barKod, String zemljaPorijekla, int godinaProizvodnje, int uvoznaCijena,
+			String materijalProizvodnje, String sezona) {
+		super(opisProizvoda, barKod, zemljaPorijekla, godinaProizvodnje, uvoznaCijena);
+		
+		this.materijalProizvodnje = materijalProizvodnje;
+		this.sezona = sezona;
+	}
+	
+	public void izracunajCijenu() {
+		this.setUvoznaCijena(getUvoznaCijena()* 1.05);
+		//this.uvoznaCijena = this.getUvoznaCijena() * 1.05;
+		
+	}
+	@Override
+	public String toString() {
+		return "Garderoba [materijalProizvodnje=" + materijalProizvodnje + ", sezona=" + sezona
+				+ ", MaterijalProizvodnje()=" + getMaterijalProizvodnje() + ", Sezona()=" + getSezona()
+				+ ", OpisProizvoda()=" + getOpisProizvoda() + ", BarKod()=" + getBarKod()
+				+ ", ZemljaPorijekla()=" + getZemljaPorijekla() + ", GodinaProizvodnje()="
+				+ getGodinaProizvodnje() + ", UvoznaCijena()=" + getUvoznaCijena() + "]";
+	}
+	
+	
+	
+
+}
+//Hemijski proizvodi
+package klase;
+
+public class HemijiskiProizvodi extends Proizvodi {
+	private double temperaturaSkladistenja;
+	private boolean zapaljivo;
+	public double getTemperaturaSkladistenja() {
+		return temperaturaSkladistenja;
+	}
+	public void setTemperaturaSkladistenja(double temperaturaSkladistenja) {
+		this.temperaturaSkladistenja = temperaturaSkladistenja;
+	}
+	public boolean isZapaljivo() {
+		return zapaljivo;
+	}
+	public void setZapaljivo(boolean zapaljivo) {
+		this.zapaljivo = zapaljivo;
+	}
+	
+	public HemijiskiProizvodi(String opisProizvoda, int barKod, String zemljaPorijekla, int godinaProizvodnje,
+			int uvoznaCijena, double temperaturaSkladistenja, boolean zapaljivo) {
+		super(opisProizvoda, barKod, zemljaPorijekla, godinaProizvodnje, uvoznaCijena);
+		this.temperaturaSkladistenja = temperaturaSkladistenja;
+		this.zapaljivo = zapaljivo;
+	}
+	
+	public void izracunajCijenu() {
+		if(this.zapaljivo) {
+			this.setUvoznaCijena(getUvoznaCijena()*1.125);
+		}else {
+			this.setUvoznaCijena(getUvoznaCijena()*1.1);
+		}
+	}
+	@Override
+	public String toString() {
+		return "HemijiskiProizvodi [temperaturaSkladistenja=" + temperaturaSkladistenja + ", zapaljivo=" + zapaljivo
+				+ ", TemperaturaSkladistenja=" + getTemperaturaSkladistenja() + ", Zapaljivo=" + isZapaljivo()
+				+ ", OpisProizvoda=" + getOpisProizvoda() + ", BarKod=" + getBarKod()
+				+ ", ZemljaPorijekla()=" + getZemljaPorijekla() + ", GodinaProizvodnje="
+				+ getGodinaProizvodnje() + ", UvoznaCijena=" + getUvoznaCijena() + "]";
+	}
+	
+	
+	
+	
+
+}
+//Hrana
+package klase;
+import java.time.LocalDate;
+public class Hrana extends Proizvodi {
+	
+	private int kalorije;
+	private LocalDate datumUpotrebe;
+	
+	
+	
+	
+	public Hrana(String opisProizvoda, int barKod, String zemljaPorijekla, int godinaProizvodnje, int uvoznaCijena,
+			int kalorije, LocalDate datumUpotrebe) {
+		super(opisProizvoda, barKod, zemljaPorijekla, godinaProizvodnje, uvoznaCijena);
+		this.setKalorije(kalorije);
+		this.setDatumUpotrebe(datumUpotrebe);
+		
+		
+	}
+	public int getKalorije() {
+		return kalorije;
+	}
+	public void setKalorije(int kalorije) {
+		if(kalorije > 0)
+		   this.kalorije = kalorije;
+	}
+	public LocalDate getDatumUpotrebe() {
+		return datumUpotrebe;
+	}
+	public void setDatumUpotrebe(LocalDate datumUpotrebe) {
+		this.datumUpotrebe = datumUpotrebe;
+	}
+	
+	/*public void izracunajCijenu() {
+		LocalDate danas = LocalDate.now();
+		if(danas.minusMonths(6).isAfter(datumUpotrebe)) {
+			this.setUvoznaCijena(getUvoznaCijena()*1.1);
+		}else {
+			this.setUvoznaCijena(getUvoznaCijena()*1.05);
+		}*/
+	
+	public void izracunajCijenu() {
+		if(datumUpotrebe.isBefore(LocalDate.now().plusMonths(6))) {
+			this.setUvoznaCijena(getUvoznaCijena()*1.05);
+		}else {
+			this.setUvoznaCijena(getUvoznaCijena()*1.1);
+		}
+	}
+	
+	
+}
+
+	
+
+
