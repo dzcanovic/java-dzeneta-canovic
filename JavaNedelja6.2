@@ -1,0 +1,244 @@
+//Glavna Zaposleni
+
+public class Zaposleni {
+
+	private String ime;
+	private int ID;
+	private String prezime;
+	private double satnica;
+	private int ukupanBrojSati;
+	protected double plata;
+	public String getIme() {
+		return ime;
+	}
+	
+	
+	
+	
+	
+	public Zaposleni(String ime, int iD, String prezime, double satnica, int ukupanBrojSati) {
+		super();
+		this.ime = ime;
+		ID = iD;
+		this.prezime = prezime;
+		this.satnica = satnica;
+		this.ukupanBrojSati = ukupanBrojSati;
+		this.plata = plata;
+	}
+
+
+
+
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+	public String getPrezime() {
+		return prezime;
+	}
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
+	}
+	public double getSatnica() {
+		return satnica;
+	}
+	public void setSatnica(double satnica) {
+		this.satnica = satnica;
+	}
+	public int getUkupanBrojSati() {
+		return ukupanBrojSati;
+	}
+	public void setUkupanBrojSati(int ukupanBrojSati) {
+		this.ukupanBrojSati = ukupanBrojSati;
+		
+	}
+
+	public double getPlata() {
+		return plata;
+	}
+
+	public void setPlata(double plata) {
+		this.plata = plata;
+	}
+	
+	
+}
+//Konobar
+package klase;
+
+public class Konobar extends Zaposleni {
+	
+	private int prekovremeniSati;
+
+	public int getPrekovremeniSati() {
+		return prekovremeniSati;
+	}
+
+	public void setPrekovremeniSati(int prekovremeniSati) {
+		this.prekovremeniSati = prekovremeniSati;
+	}
+
+	public Konobar(String ime, int iD, String prezime, double satnica, int ukupanBrojSati, int prekovremeniSati) {
+		super(ime, iD, prezime, satnica, ukupanBrojSati);
+		this.prekovremeniSati = prekovremeniSati;
+	}
+
+	public void izracunajPlatu() {
+        this.setPlata(4 * getSatnica() * getUkupanBrojSati()+ prekovremeniSati * getSatnica() * 1.2);
+}
+}
+//Kuvar
+package klase;
+
+public class Kuvar extends Zaposleni {
+	
+	public int iznos;
+
+	
+	
+	
+	public Kuvar(String ime, int iD, String prezime,double satnica, int ukupanBrojSati) {
+       super(ime, iD, prezime, satnica, ukupanBrojSati);
+       this.iznos = 1500;
+}
+
+	public int getIznos() {
+		return iznos;
+	}
+
+	public void setIznos(int iznos) {
+		this.iznos = iznos;
+	}
+	
+	public void izracunajPlatu() {
+		this.setPlata(iznos + 4 * getUkupanBrojSati()* getSatnica());
+		
+	}
+
+}
+//Menager
+package klase;
+
+public class Menager extends Zaposleni {
+	
+	private double osnovica;
+	private double bonus;
+	public Menager(String ime, int iD, String prezime, double satnica, int ukupanBrojSati, double osnovica,
+			double bonus) {
+		super(ime, iD, prezime, satnica, ukupanBrojSati);
+		this.osnovica = osnovica;
+		this.bonus = bonus;
+	}
+	public double getOsnovica() {
+		return osnovica;
+	}
+	public void setOsnovica(double osnovica) {
+		this.osnovica = osnovica;
+	}
+	public double getBonus() {
+		return bonus;
+	}
+	public void setBonus(double bonus) {
+		this.bonus = bonus;
+	}
+	public void izracunajPlatu() {
+		this.setPlata(this.getOsnovica()+ 4 * this.getUkupanBrojSati() * this.getSatnica()+ this.getBonus());
+	}
+	
+	}
+//Restoran
+package klase;
+import java.util.ArrayList;
+public class Restoran {
+
+	private String naziv;
+	private String adresa;
+	private int pib;
+	private ArrayList<Zaposleni> zaposleni;
+	public Restoran(String naziv, String adresa, int pib, ArrayList<Zaposleni> zaposleni) {
+		super();
+		this.naziv = naziv;
+		this.adresa = adresa;
+		this.pib = pib;
+		this.zaposleni = zaposleni;
+	}
+	public String getNaziv() {
+		return naziv;
+	}
+	public void setNaziv(String naziv) {
+		this.naziv = naziv;
+	}
+	public String getAdresa() {
+		return adresa;
+	}
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
+	}
+	public int getPib() {
+		return pib;
+	}
+	public void setPib(int pib) {
+		this.pib = pib;
+	}
+	public ArrayList<Zaposleni> getZaposleni() {
+		return zaposleni;
+	}
+	public void setZaposleni(ArrayList<Zaposleni> zaposleni) {
+		this.zaposleni = zaposleni;
+	}
+	
+	public void dodajZaposlenog(Zaposleni z) {
+		zaposleni.add(z);
+	}
+	
+	public void ukloniZaposlenog(Zaposleni z) {
+		zaposleni.remove(z.getID());
+	}
+	public void  nadjiZaposlenog(int ID) {
+		for(Zaposleni z: this.zaposleni) {
+			if(z.getID()==ID) {
+				System.out.print(z.getIme());
+			}
+		}
+	}
+	public static void main(String[] args) {
+		ArrayList<Zaposleni> zaposleni = new ArrayList<>();
+		
+		Konobar konobar1 = new Konobar("Marko", 1, "Markovic", 8, 40, 10); 
+		Restoran r1 = new Restoran("Astorija","City kvart",123, zaposleni);
+		Menager menager1 = new Menager("Ana", 3, "Jovanovic", 12, 40, 1300, 200);
+		Kuvar kuvar1 = new Kuvar("Petar", 2, "Petrovic", 10, 40);
+		
+		r1.dodajZaposlenog(konobar1);
+        r1.dodajZaposlenog(kuvar1);
+        r1.dodajZaposlenog(menager1);
+        
+        konobar1.izracunajPlatu();
+        kuvar1.izracunajPlatu();
+        menager1.izracunajPlatu();
+        
+        for(Zaposleni z : r1.getZaposleni()){
+        	
+        	
+        System.out.println(z.getIme() + " "+ z.getPrezime() + " - Plata: "+ z.getPlata() + " EUR");
+        }
+        
+        r1.nadjiZaposlenog(2);
+        }
+	}
+        
+	
+	
+	
+	
+	
+	
+	
+
+
