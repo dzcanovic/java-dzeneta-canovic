@@ -1,0 +1,130 @@
+package novi;
+
+public  abstract class Vozilo {
+
+	private String id;
+	private double maxBrzina;
+	
+	
+	public Vozilo(String id, double maxBrzina) {
+		super();
+		this.id = id;
+		this.maxBrzina = maxBrzina;
+	}
+	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public double getMaxBrzina() {
+		return maxBrzina;
+	}
+
+	public void setMaxBrzina(double maxBrzina) {
+		this.maxBrzina = maxBrzina;
+	}
+
+	public void info() {
+		System.out.println("Vozilo [id=" + id + ", maxBrzina=" + maxBrzina + "]");
+	}
+	public abstract double izracunajVrijemeDostave(double udaljenost);
+	
+	
+	
+}
+package novi;
+
+public class Motor extends Vozilo implements Ekonomican {
+
+	public Motor(String id, double maxBrzina) {
+		super(id, maxBrzina);
+	}
+
+	@Override
+	public double potrosnjaPokm() {
+		
+		return 0;
+	}
+
+	@Override
+	public double izracunajVrijemeDostave(double udaljenost) {
+		return udaljenost/getMaxBrzina();
+		
+	}
+
+}
+public class Bicikl extends Vozilo implements Ekonomican {
+
+	
+	private static final float FAKTOR_BRZINE = 0.5f;
+	
+	
+	
+	
+	public Bicikl(String string, double maxBrzina) {
+		super(string, maxBrzina);
+	}
+
+	
+	@Override
+	public double potrosnjaPokm() {
+		
+		return 0.0;
+	}
+	@Override
+	public double izracunajVrijemeDostave(double udaljenost) {
+		return udaljenost/getMaxBrzina();
+	}
+
+}
+public class Automobil extends Vozilo {
+
+
+
+	public Automobil(String id, double maxBrzina) {
+		super(id, maxBrzina);
+	}
+
+	@Override
+	public double izracunajVrijemeDostave(double udaljenost) {
+		
+		return 0;
+	}
+
+}
+mport java.util.Random;
+import java.util.ArrayList;
+public class TestVozila {
+
+	public static void main(String[] args) {
+		ArrayList<Vozilo> vozila = new ArrayList<Vozilo>();
+		
+		vozila.add(new Bicikl("A0",10.0));
+		vozila.add(new Bicikl("A1",12.0));
+		vozila.add(new Motor("B0",15.5));
+		vozila.add(new Automobil("C1",19.0));
+		double udaljenost = 10.0;
+		for(Vozilo v: vozila) {
+			udaljenost +=new Random().nextDouble();
+			v.info();
+			System.out.println("Vrijeme dostave: "+ (v.izracunajVrijemeDostave(udaljenost)));
+			
+			if(v instanceof Ekonomican e) {
+				System.out.println("Vozilo je ekonomicno, a potrosnja je "+ e.potrosnjaPokm());
+			}else {
+				System.out.println("Vozilo je automobil");
+			}
+		}
+		
+	}
+
+}
+public interface Ekonomican {
+
+	public double potrosnjaPokm();
+
+}
