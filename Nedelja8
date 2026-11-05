@@ -1,0 +1,100 @@
+public static String konvertujVrijeme(String vrijeme, String format, String zeljeniFormat) {
+		int iSat=format.indexOf("HH");
+		int iMin=format.indexOf("MM");
+		int iSek=format.indexOf("SS");
+		
+		String sati = vrijeme.substring(iSat, iSat+2);
+		String minuti = vrijeme.substring(iMin, iMin+2);
+		String sekunde = vrijeme.substring(iSek, iSek+2);
+		
+		String rezultat = zeljeniFormat;
+		
+		 rezultat = rezultat.replace("HH", sati);
+		 rezultat = rezultat.replace("MM", minuti);
+		 rezultat = rezultat.replace("SS", sekunde);
+		 
+		 return rezultat;
+	}
+	public static void main(String[] args) {
+		
+		String r = konvertujVrijeme("12:20:23","HH:MM:SS","HHh-MMmin");
+		System.out.println(r);
+	
+		
+		
+	}
+public class IspitniTermin {
+	private String nazivPredmeta;
+	private String sifraTermin;
+	private String datumVrijemeTermina;
+	private String oznakaSale;
+	private int brojPrijavljenihStudenata;
+	
+	
+	public IspitniTermin(String nazivPredmeta, String sifraTermin, String datumVrijemeTermina, String oznakaSale,
+			int brojPrijavljenihStudenata) {
+		this.nazivPredmeta = nazivPredmeta;
+		this.sifraTermin = sifraTermin;
+		this.datumVrijemeTermina = datumVrijemeTermina;
+		this.oznakaSale = oznakaSale;
+		this.brojPrijavljenihStudenata = brojPrijavljenihStudenata;
+	}
+	public String getNazivPredmeta() {
+		return nazivPredmeta;
+	}
+	public void setNazivPredmeta(String nazivPredmeta) {
+		this.nazivPredmeta = nazivPredmeta;
+	}
+	public String getSifraTermin() {
+		return sifraTermin;
+	}
+	public void setSifraTermin(String sifraTermin) {
+		this.sifraTermin = sifraTermin;
+	}
+	public String getDatumVrijemeTermina() {
+		return datumVrijemeTermina;
+	}
+	public void setDatumVrijemeTermina(String datumVrijemeTermina) {
+		this.datumVrijemeTermina = datumVrijemeTermina;
+	}
+	public String getOznakaSale() {
+		return oznakaSale;
+	}
+	public void setOznakaSale(String oznakaSale) {
+		this.oznakaSale = oznakaSale;
+	}
+	public int getBrojPrijavljenihStudenata() {
+		return brojPrijavljenihStudenata;
+	}
+	public void setBrojPrijavljenihStudenata(int brojPrijavljenihStudenata) {
+		this.brojPrijavljenihStudenata = brojPrijavljenihStudenata;
+	}
+	
+	public static String pronadjiSalu(IspitniTermin[]termini, String sifraTermin) {
+		String out ="";
+		for(IspitniTermin t: termini) {
+			if(t.getSifraTermin().equals(sifraTermin)) {
+				return t.getOznakaSale();
+			}
+		}
+		return out;	
+	}
+	public static int nadjiBrojPrijavljenihStudenata(IspitniTermin[]termini, String nazivPredmeta) {
+        int out =0;
+		for(IspitniTermin t: termini) {
+			if(t.getNazivPredmeta().equals(nazivPredmeta)) {
+				out++;
+			}
+		}
+		return out;
+	}
+	
+	@Override
+	public String toString() {
+		return "IspitniTermin [nazivPredmeta=" + nazivPredmeta + ", sifraTermin=" + sifraTermin
+				+ ", datumVrijemeTermina=" + datumVrijemeTermina + ", oznakaSale=" + oznakaSale
+				+ ", brojPrijavljenihStudenata=" + brojPrijavljenihStudenata + "]";
+	}
+	
+
+}
