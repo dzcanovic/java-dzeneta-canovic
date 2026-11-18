@@ -1,0 +1,248 @@
+
+public class Razlomak {
+
+	private int imenilac;
+	private int brojilac;
+	
+	public Razlomak(int imenilac, int brojilac) {
+		super();
+		this.setImenilac(imenilac);
+		this.setBrojilac(brojilac);
+	}
+	
+	
+	public Razlomak() {
+		this(1,0);
+	}
+	
+	
+	public int getImenilac() {
+		return imenilac;
+	}
+	public void setImenilac(int imenilac) {
+		this.imenilac = imenilac;
+	}
+	public int getBrojilac() {
+		return brojilac;
+	}
+	public void setBrojilac(int brojilac) {
+		this.brojilac = brojilac;
+	}
+
+
+	@Override
+	public String toString() {
+		
+		if(this.getBrojilac() >= 0 && this.getImenilac() >= 0) {
+			return String.format("%d/%d", this.getBrojilac(),this.getImenilac());
+	}else if(this.getBrojilac() < 0 && this.getImenilac() >= 0) {
+		return String.format("%d/%d", this.getBrojilac(),this.getImenilac());
+	}else if(this.getBrojilac() >= 0 && this.getImenilac() < 0) {
+		return String.format("%d/%d", this.getBrojilac(),this.getImenilac());
+	}else {
+	    return String.format("%d/%d", getBrojilac(), getImenilac());
+	}
+	}
+		public void skrati() {
+			for(int i = 2; i<= Math.min(Math.abs(this.getBrojilac()),Math.abs(this.getImenilac()));i++) {
+
+				while(this.getBrojilac()% i == 0 && this.getImenilac() % i == 0) {
+					this.imenilac /= i;
+					this.brojilac /= i;
+				}
+				}
+			}
+	public static Razlomak saberi(Razlomak a, Razlomak b) {
+		Razlomak r = new Razlomak(a.getImenilac() * b.getImenilac(), a.getBrojilac() * b.getImenilac()+ a.getImenilac() * b.getBrojilac());
+		r.skrati();
+		return r;
+	}
+	public static Razlomak mnozi(Razlomak a, Razlomak b) {
+		Razlomak r = new Razlomak( a.getImenilac() * b.getImenilac(), a.getBrojilac() * b.getBrojilac());
+		r.skrati();
+		return r;
+	}
+	public static Razlomak oduzmi(Razlomak a, Razlomak b) {
+		Razlomak r = new Razlomak(a.getImenilac() * b.getImenilac(),  a.getBrojilac() * b.getImenilac() - a.getImenilac() * b.getBrojilac());
+		r.skrati();
+		return r;
+	
+}
+	public static Razlomak podijeli(Razlomak a, Razlomak b){
+		Razlomak r = new Razlomak();
+		r.setBrojilac(a.getBrojilac()*b.getImenilac());
+		r.setImenilac(a.getImenilac()*b.getBrojilac());
+		return r;
+		}
+	}
+//FormaRazalomak
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.Dimension;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+
+public class FormaRazlomak extends JFrame {
+	
+	private JLabel I1,I2,I3,I4,I5,I6,I7,I8;
+	private JTextField t1, t2, t3, t4;
+	private JButton b1, b2;
+
+	public FormaRazlomak() {
+		super("Kalkulator");
+		this.setSize(300,400);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		
+		this.setLayout(new FlowLayout());
+		
+		Font f = new Font("Times  New Roman", Font.BOLD,18);
+		
+		I1 = new JLabel("Prvi broj:");
+		I1.setFont(f);
+		I1.setPreferredSize(new Dimension(100,20));
+		
+		
+		I2 = new JLabel("");
+		I2.setFont(f);
+		I2.setPreferredSize(new Dimension(100,20));
+		
+		I3 = new JLabel("");
+		I3.setFont(f);
+		I3.setPreferredSize(new Dimension(100,20));
+		
+		I4 = new JLabel("");
+		I4.setFont(f);
+		I4.setPreferredSize(new Dimension(100,20));
+		
+		I5 = new JLabel("");
+		I5.setFont(f);
+		I5.setPreferredSize(new Dimension(250,25));
+		
+		I6 = new JLabel("");
+		I6.setFont(f);
+		I6.setPreferredSize(new Dimension(250,25));
+		
+		I7 = new JLabel("");
+		I7.setFont(f);
+		I7.setPreferredSize(new Dimension(250,25));
+		
+		I8 = new JLabel("");
+		I8.setFont(f);
+		I8.setPreferredSize(new Dimension(250,25));
+		
+		t1 = new JTextField("");
+		t1.setFont(f);
+		t1.setPreferredSize(new Dimension(100,20));
+		
+		t2 = new JTextField("");
+		t2.setFont(f);
+		t2.setPreferredSize(new Dimension(100,20));
+		
+		t3 = new JTextField("");
+		t3.setFont(f);
+		t3.setPreferredSize(new Dimension(100,20));
+		
+		t4 = new JTextField("");
+		t4.setFont(f);
+		t4.setPreferredSize(new Dimension(100,20));
+		
+		ObradiDugmad oD = new ObradiDugmad();
+		
+		b1 = new JButton("");
+		b1.setFont(f);
+		b1.setPreferredSize(new Dimension(100,20));
+		
+		b2 = new JButton("");
+		b2.setFont(f);
+		b2.setPreferredSize(new Dimension(100,20));
+		
+		b1.setText("Izracunaj");
+		b2.setText("Izlaz");
+
+		b1.addActionListener(oD);
+		b2.addActionListener(oD);
+		
+		this.add(I1);
+		this.add(I2);
+
+		this.add(t1);
+		this.add(t2);
+
+		this.add(I3);
+		this.add(I4);
+
+		this.add(t3);
+		this.add(t4);
+
+		this.add(b1);
+		this.add(b2);
+
+		this.add(I5);
+		this.add(I6);
+		this.add(I7);
+		this.add(I8);
+	}
+	private class ObradiDugmad implements ActionListener{
+		
+		public void actionPaneformat(ActionEvent a) {
+		}		
+		@Override
+		public void actionPerformed(ActionEvent a) {
+		    if(a.getSource()==b1) {
+		        int im, br;
+
+		        im = Integer.parseInt(t1.getText());
+		        br = Integer.parseInt(t2.getText());
+		        Razlomak r1 = new Razlomak(im, br);
+
+		        im = Integer.parseInt(t3.getText());
+		        br = Integer.parseInt(t4.getText());
+		        Razlomak r2 = new Razlomak(im, br);
+
+		        Razlomak r;
+
+		        r = Razlomak.saberi(r1, r2);
+		        r.skrati();
+		        I5.setText("Sabiranje: " + r.toString());
+
+		        r = Razlomak.oduzmi(r1, r2);
+		        r.skrati();
+		        I6.setText("Oduzimanje: " + r.toString());
+
+		        r = Razlomak.mnozi(r1, r2);
+		        r.skrati();
+		        I7.setText("Mnozenje: " + r.toString());
+
+		        // Dijeljenje dodajemo kad napravis podijeli()
+		    }
+
+		    if(a.getSource()==b2) {
+		        int opcija = JOptionPane.showConfirmDialog(
+		            null, "Zelite li izaci?", "Izlazak",
+		            JOptionPane.YES_NO_OPTION
+		        );
+
+		        if(opcija == JOptionPane.YES_OPTION) {
+				System.exit(EXIT_ON_CLOSE);
+			}
+		}
+		
+	}
+}
+}
+public class RazlomakTest {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		FormaRazlomak f= new FormaRazlomak();
+		f.setVisible(true);
+		
+	}
+}
